@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday! 🎉</title>
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Floating Background Emojis */
+    .bg-balloon {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 8s infinite linear;
+      opacity: 0.2;
+      z-index: 0;
+      user-select: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    /* Music Control Button */
+    .music-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #334155;
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 100;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .music-btn:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .card-container {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 450px;
+      padding: 30px 20px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out forwards;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2 {
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #94a3b8;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: #38bdf8;
+      color: #0f172a;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      margin: 5px;
+    }
+
+    .btn:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
+    }
+
+    .btn-no {
+      background: #ef4444;
+      color: white;
+      position: relative;
+    }
+
+    /* Grid for Stat Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: #334155;
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    .stat-card h3 {
+      color: #38bdf8;
+      font-size: 1.2rem;
+    }
+
+    .stat-card p {
+      font-size: 0.85rem;
+      margin-bottom: 0;
+    }
+
+    /* Chat Transcripts */
+    .chat-box {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .msg {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+
+    .msg-them {
+      background: #334155;
+      color: #f8fafc;
+    }
+
+    .msg-me {
+      background: #0284c7;
+      color: white;
+      margin-left: auto;
+    }
+
+    /* Quiz Styling */
+    .quiz-option {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 12px;
+      border-radius: 10px;
+      margin: 8px 0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-option:hover {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+    }
+
+    /* Flip Cards */
+    .flip-card {
+      background-color: transparent;
+      height: 100px;
+      perspective: 1000px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .flip-card-front {
+      background-color: #334155;
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .flip-card-back {
+      background-color: #0284c7;
+      color: white;
+      transform: rotateY(180deg);
+      font-size: 0.9rem;
+    }
+
+    /* Cake Game Styling */
+    .cake-box {
+      font-size: 5rem;
+      margin: 20px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+
+    .cake-box:active {
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background Audio -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73380.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" onclick="toggleMusic()">🎵 Music: OFF</button>
+
+<!-- Floating Emojis Background -->
+<div class="bg-balloon" style="left: 10%; animation-delay: 0s;">🎈</div>
+<div class="bg-balloon" style="left: 35%; animation-delay: 2s;">🎂</div>
+<div class="bg-balloon" style="left: 60%; animation-delay: 4s;">✨</div>
+<div class="bg-balloon" style="left: 85%; animation-delay: 1s;">🎉</div>
+
+<div class="card-container">
+
+  <!-- PAGE 1: The Entry Trap -->
+  <div class="page active" id="page1">
+    <h1>Warning! ⚠️</h1>
+    <p>Are you ready for the ultimate birthday celebration and roast session?</p>
+    <button class="btn" onclick="nextPage(2)">YES! 🎉</button>
+    <button class="btn btn-no" id="noBtn" onmouseover="moveButton()">NO 😜</button>
+  </div>
+
+  <!-- PAGE 2: Player Stats -->
+  <div class="page" id="page2">
+    <h2>Partner in Crime Stats 🎮</h2>
+    <p>Official verified metrics across the city lines:</p>
+    <div class="grid">
+      <div class="stat-card">
+        <h3>100%</h3>
+        <p>Unmatched Vibe</p>
+      </div>
+      <div class="stat-card">
+        <h3>∞</h3>
+        <p>Inside Jokes</p>
+      </div>
+      <div class="stat-card">
+        <h3>5 mins</h3>
+        <p>Drama Reply Speed</p>
+      </div>
+      <div class="stat-card">
+        <h3>#1</h3>
+        <p>Iconic Duo</p>
+      </div>
+    </div>
+    <button class="btn" onclick="nextPage(3)">Take Quiz 🧠</button>
+  </div>
+
+  <!-- PAGE 3: Expanded Friendship Quiz Page -->
+  <div class="page" id="page3">
+    <h2>Duo Challenge 🧠</h2>
+    <p id="quizQuestion">Question 1: Who responds faster when big drama drops?</p>
+    <div id="quizOptions">
+      <div class="quiz-option" onclick="answerQuiz()">Me (Instant 0.2s reply)</div>
+      <div class="quiz-option" onclick="answerQuiz()">You (Takes 3 business days)</div>
+    </div>
+  </div>
+
+  <!-- PAGE 4: Chat Transcripts -->
+  <div class="page" id="page4">
+    <h2>Exposed Chats 💬</h2>
+    <p>A classic summary of every text thread:</p>
+    <div class="chat-box">
+      <div class="msg msg-them">Yo I have the biggest tea ☕</div>
+      <div class="msg msg-me">SPILL IT IMMEDIATELY 👂</div>
+      <div class="msg msg-them">Okay so basically... *types for 20 mins*</div>
+    </div>
+    <button class="btn" onclick="nextPage(5)">Next ➡️</button>
+  </div>
+
+  <!-- PAGE 5: Flip Cards -->
+  <div class="page" id="page5">
+    <h2>Why You're Top Tier 🏆</h2>
+    <p>Click the cards to flip them!</p>
+    
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">Reason #1 💡</div>
+        <div class="flip-card-back">Always ready to drop tea via text!</div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">Reason #2 🔥</div>
+        <div class="flip-card-back">You match my exact level of crazy.</div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="nextPage(6)" style="margin-top: 15px;">Next ➡️</button>
+  </div>
+
+  <!-- PAGE 6: Roasts -->
+  <div class="page" id="page6">
+    <h2>Official Friendly Roasts 🔥</h2>
+    <p>Because I wouldn't be a real homie without keeping you humble:</p>
+    <ul style="text-align: left; padding-left: 20px; line-height: 2; margin-bottom: 20px; color: #cbd5e1;">
+      <li>Leaving texts on read for 3 business days.</li>
+      <li>Replying in 3 seconds the moment drama happens.</li>
+      <li>Making terrible life choices and asking for advice after doing it anyway.</li>
+    </ul>
+    <button class="btn" onclick="nextPage(7)">Next ➡️</button>
+  </div>
+
+  <!-- PAGE 7: Distance Check -->
+  <div class="page" id="page7">
+    <h2>Distance Check 📍</h2>
+    <p>Different cities, same chaotic energy. No matter how many miles apart we are, nothing changes!</p>
+    <button class="btn" onclick="nextPage(8)">View Contract 📜</button>
+  </div>
+
+  <!-- PAGE 8: Contract -->
+  <div class="page" id="page8">
+    <h2>Long-Distance Contract 📜</h2>
+    <p>Official rules across city lines:</p>
+    <ul style="text-align: left; padding-left: 20px; line-height: 2.2; margin-bottom: 20px; color: #cbd5e1;">
+      <li>📱 Text whenever big tea drops.</li>
+      <li>🎬 Stream movies and roast together.</li>
+      <li>🤫 Take secrets to the grave.</li>
+      <li>📸 Ban bad-angle screenshot posts.</li>
+      <li>🍕 Send emergency delivery food.</li>
+      <li>🕵️ Play detective when requested.</li>
+      <li>🚫 Zero judging for silly choices.</li>
+      <li>💯 Always keep it 100% real.</li>
+      <li>🥳 Hype each other up daily.</li>
+      <li>👑 Legendary duo despite the miles.</li>
+      <li>🚨 Priority texts for emergency tea.</li>
+    </ul>
+    <button class="btn" onclick="nextPage(9)">Eat Cake! 🎂</button>
+  </div>
+
+  <!-- PAGE 9: Eat The Birthday Cake Game -->
+  <div class="page" id="page9">
+    <h2>Virtual Cake Time! 🎂</h2>
+    <p id="cakeStatus">Tap the cake to take a bite!</p>
+    
+    <div class="cake-box" id="cakeDisplay" onclick="eatCake()">🎂</div>
+
+    <button class="btn" id="nextAfterCake" onclick="nextPage(10); fireConfetti();" style="display: none;">Final Note 💌</button>
+  </div>
+
+  <!-- PAGE 10: Final Birthday Message -->
+  <div class="page" id="page10">
+    <h1>Happy Birthday! 🎂✨</h1>
+    <p>Hope you have an absolute blast today! So grateful to have a homie like you across the miles. Let's make this year legendary!</p>
+    <button class="btn" onclick="fireConfetti()">Celebrate! 🎉</button>
+  </div>
+
+</div>
+
+<script>
+  function nextPage(pageNumber) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    document.getElementById(`page${pageNumber}`).classList.add('active');
+  }
+
+  function moveButton() {
+    const btn = document.getElementById('noBtn');
+    const x = Math.floor(Math.random() * 200) - 100;
+    const y = Math.floor(Math.random() * 200) - 100;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  function fireConfetti() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
+
+  /* Audio Toggle Logic */
+  let isPlaying = false;
+  function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn = document.querySelector('.music-btn');
+    if (isPlaying) {
+      audio.pause();
+      btn.innerText = "🎵 Music: OFF";
+    } else {
+      audio.play();
+      btn.innerText = "🎵 Music: ON";
+    }
+    isPlaying = !isPlaying;
+  }
+
+  /* Expanded Quiz Logic */
+  let currentQuizStep = 0;
+  
+  const quizData = [
+    {
+      q: "Question 2: What happens when we hang out in the same city?",
+      options: ["Non-stop food runs on my tab 🍔", "Absolute chaos unlocked 🔥"]
+    },
+    {
+      q: "Question 3: If we get into trouble, who is talking us out of it?",
+      options: ["Neither, we are both going down 💀", "We blame it on bad wifi 📶"]
+    },
+    {
+      q: "Question 4: What is our official long-distance motto?",
+      options: ["Miles mean nothing, tea means everything ☕", "Different cities, same chaos 👑"]
+    }
+  ];
+
+  function answerQuiz() {
+    fireConfetti();
+    const questionEl = document.getElementById('quizQuestion');
+    const optionsEl = document.getElementById('quizOptions');
+
+    if (currentQuizStep < quizData.length) {
+      const current = quizData[currentQuizStep];
+      questionEl.innerText = current.q;
+      optionsEl.innerHTML = `
+        <div class="quiz-option" onclick="answerQuiz()">${current.options[0]}</div>
+        <div class="quiz-option" onclick="answerQuiz()">${current.options[1]}</div>
+      `;
+      currentQuizStep++;
+    } else {
+      questionEl.innerText = "Score: 100% Unstoppable Duo 🏆";
+      optionsEl.innerHTML = `
+        <p style="color: #38bdf8;">You passed the vibe check with flying colors!</p>
+        <button class="btn" onclick="nextPage(4)">Continue ➡️</button>
+      `;
+    }
+  }
+
+  /* Cake Eating Game Logic */
+  let cakeBites = 0;
+  const cakeStages = ["🎂", "🍰", "🧁", "🍽️"];
+  
+  function eatCake() {
+    cakeBites++;
+    if (cakeBites < cakeStages.length) {
+      document.getElementById('cakeDisplay').innerText = cakeStages[cakeBites];
+      if (cakeBites === 1) {
+        document.getElementById('cakeStatus').innerText = "Mmm... take another bite!";
+      } else if (cakeBites === 2) {
+        document.getElementById('cakeStatus').innerText = "Almost gone!";
+      }
+    } else {
+      document.getElementById('cakeDisplay').innerText = "😋✨";
+      document.getElementById('cakeStatus').innerText = "You ate the whole cake! Time for your final note!";
+      document.getElementById('nextAfterCake').style.display = "inline-block";
+      fireConfetti();
+    }
+  }
+</script>
+
+</body>
+</html>
