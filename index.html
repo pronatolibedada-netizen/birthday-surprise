@@ -258,6 +258,43 @@
       color: #ff6b81;
       margin-bottom: 5px;
     }
+
+    /* PAGE 15 BOTTLE STYLING */
+    .bottle-box {
+      font-size: 5rem;
+      cursor: pointer;
+      margin: 20px 0;
+      position: relative;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .bottle-box:hover { transform: scale(1.1) rotate(-5deg); }
+    .cork-item {
+      position: absolute;
+      top: -10px;
+      left: 42%;
+      font-size: 2rem;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+    }
+    .cork-item.popped {
+      transform: translateY(-90px) rotate(45deg);
+      opacity: 0;
+    }
+
+    /* CONFETTI PARTICLES FOR PAGE 16 */
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      top: -20px;
+      pointer-events: none;
+      z-index: 99;
+      animation: fallConfetti linear forwards;
+    }
+    @keyframes fallConfetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -292,7 +329,7 @@
     <button class="btn" id="enter-btn" onclick="nextPage(); startMusicOnce();" disabled>
       🔒 Waiting... (5s)
     </button>
-    <span class="page-num">1 / 14</span>
+    <span class="page-num">1 / 16</span>
   </div>
 
   <!-- PAGE 2: LEVEL 15 UNLOCKED -->
@@ -304,7 +341,7 @@
     </div>
     <p>Welcome to <strong>Level 15</strong>! A whole new tier of life, new legendary quests, better stats, and even more chaotic energy. May this year bring top-tier loot, zero lag, and endless wins!</p>
     <button class="btn" onclick="nextPage()">Claim Level 15 →</button>
-    <span class="page-num">2 / 14</span>
+    <span class="page-num">2 / 16</span>
   </div>
 
   <!-- PAGE 3: THE NICKNAME ORIGIN -->
@@ -313,7 +350,7 @@
     <p>Do you remember the day I first called you <strong>"Cutie Pie"</strong>?</p>
     <p>You tried to act unbothered, but we both know that nickname was locked in forever!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">3 / 14</span>
+    <span class="page-num">3 / 16</span>
   </div>
 
   <!-- PAGE 4: HORROR QUIZ -->
@@ -326,7 +363,7 @@
       <button class="quiz-btn" onclick="answer(4, false)">Blame me for picking a trash film</button>
     </div>
     <div class="feedback" id="fb4"></div>
-    <span class="page-num">4 / 14</span>
+    <span class="page-num">4 / 16</span>
   </div>
 
   <!-- PAGE 5: INTERACTIVE CAKE GAME -->
@@ -336,7 +373,7 @@
     <div class="cake-game" id="cake" onclick="eatCake()">🎂</div>
     <div class="feedback" id="cake-status">Bites left: 4</div>
     <button class="btn" id="cake-btn" onclick="nextPage()" disabled>Finish Eating First 🍰</button>
-    <span class="page-num">5 / 14</span>
+    <span class="page-num">5 / 16</span>
   </div>
 
   <!-- PAGE 6: CHAOS ROAST -->
@@ -345,7 +382,7 @@
     <p>Honestly, our main bad habit is how <strong>completely chaotic and unhinged</strong> our text messages get.</p>
     <p>It's a miracle our chat history hasn't broken the server yet!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">6 / 14</span>
+    <span class="page-num">6 / 16</span>
   </div>
 
   <!-- PAGE 7: SECRET SONG DETAIL -->
@@ -354,7 +391,7 @@
     <p>Did you notice the background song playing right now?</p>
     <p>It's made up of our absolute favorite tracks (featuring Billie Eilish like <i>Ocean Eyes</i> & <i>lovely</i>) because no standard background music would fit our vibe!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">7 / 14</span>
+    <span class="page-num">7 / 16</span>
   </div>
 
   <!-- PAGE 8: REAL CHAT MEMORIES -->
@@ -369,7 +406,7 @@
     </div>
     <p>Looking back at our real chats always reminds me how unbeatable our vibe is!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">8 / 14</span>
+    <span class="page-num">8 / 16</span>
   </div>
 
   <!-- PAGE 9: HORROR & LOVE -->
@@ -378,7 +415,7 @@
     <p>You might love dark horror movies, creepy stories, and scary themes...</p>
     <p>...but you're still the sweetest person in my chat notifications (even when you're being completely unhinged!).</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">9 / 14</span>
+    <span class="page-num">9 / 16</span>
   </div>
 
   <!-- PAGE 10: FINAL QUIZ -->
@@ -390,7 +427,7 @@
       <button class="quiz-btn" onclick="answer(10, true)">Born ready! 🎃</button>
     </div>
     <div class="feedback" id="fb10"></div>
-    <span class="page-num">10 / 14</span>
+    <span class="page-num">10 / 16</span>
   </div>
 
   <!-- PAGE 11: UPDATED BIRTHDAY WISH -->
@@ -403,7 +440,7 @@
       </p>
     </div>
     <button class="btn" onclick="nextPage()">The Big Finale →</button>
-    <span class="page-num">11 / 14</span>
+    <span class="page-num">11 / 16</span>
   </div>
 
   <!-- PAGE 12: FINAL REVEAL -->
@@ -411,7 +448,7 @@
     <h1>Happy Birthday Cutie Pie! 🎈</h1>
     <p>Have the absolute best birthday on August 18th. You deserve the world!</p>
     <button class="btn" onclick="nextPage()">Unlock Birthday Games 🎮</button>
-    <span class="page-num">12 / 14</span>
+    <span class="page-num">12 / 16</span>
   </div>
 
   <!-- PAGE 13: AFTER-PARTY GAME 1 (GHOST CATCHER) -->
@@ -424,7 +461,7 @@
     </div>
     <button class="btn" id="start-ghost-btn" onclick="startGhostGame()">Start Game 🎮</button>
     <button class="btn" onclick="nextPage()">Next Game →</button>
-    <span class="page-num">13 / 14</span>
+    <span class="page-num">13 / 16</span>
   </div>
 
   <!-- PAGE 14: AFTER-PARTY GAME 2 (CHAOS METER) -->
@@ -436,10 +473,45 @@
     </div>
     <div class="game-score-board" id="meter-text">Energy: 0%</div>
     <button class="btn" onclick="boostMeter()">TAP FAST! 🔥</button>
-    <div style="margin-top: 15px;">
-      <button class="btn" onclick="goToPage(1)">Replay Whole Cards 🔄</button>
+    <div style="margin-top: 12px;">
+      <button class="btn" onclick="nextPage()">Let's Celebrate! 🍾 →</button>
     </div>
-    <span class="page-num">14 / 14</span>
+    <span class="page-num">14 / 16</span>
+  </div>
+
+  <!-- PAGE 15: CHAMPAGNE CELEBRATION -->
+  <div class="page" id="p15">
+    <h1>Let's Celebrate! 🍾</h1>
+    <p>The main party is here! Tap the bottle to pop the champagne and start the celebration!</p>
+
+    <div class="bottle-box" onclick="popChampagne()">
+      <div class="cork-item" id="cork">🍾</div>
+      <div>🥂</div>
+    </div>
+
+    <p id="pop-status" style="font-weight: bold; color: #ff6b81;">Click the bottle to pop it open!</p>
+    
+    <button class="btn" id="p16-btn" onclick="nextPage()" style="display: none; margin-top: 15px;">
+      Enter Unlimited After-Party 🎉
+    </button>
+    <span class="page-num">15 / 16</span>
+  </div>
+
+  <!-- PAGE 16: INFINITE CONFETTI BLAST -->
+  <div class="page" id="p16">
+    <h1>The Unlimited Party 🎈</h1>
+    <p>The birthday never ends! Tap the button below as many times as you want to blast confetti everywhere!</p>
+
+    <button class="btn" onclick="blastConfetti()" style="font-size: 1.1rem; padding: 15px 32px; background: linear-gradient(45deg, #ff6b81, #ff4757);">
+      🎉 BLOW CONFETTI! 🎉
+    </button>
+
+    <p style="margin-top: 15px; font-size: 0.85rem; color: #9e6b75;">Tap repeatedly for absolute chaos!</p>
+    
+    <div style="margin-top: 10px;">
+      <button class="btn" onclick="goToPage(1)">Replay Card Deck 🔄</button>
+    </div>
+    <span class="page-num">16 / 16</span>
   </div>
 
 </div>
@@ -454,7 +526,7 @@
   }
 
   function nextPage() {
-    if (currentPage < 14) {
+    if (currentPage < 16) {
       showPage(currentPage + 1);
     }
   }
@@ -591,6 +663,33 @@
       } else {
         document.getElementById('meter-text').innerText = `MAX ENERGY 100%! Hlii Is Supreme! 👑`;
       }
+    }
+  }
+
+  /* --- PAGE 15: CHAMPAGNE POP LOGIC --- */
+  let popped = false;
+  function popChampagne() {
+    if (popped) return;
+    popped = true;
+    document.getElementById('cork').classList.add('popped');
+    document.getElementById('pop-status').innerText = 'CHEERS! 🥂 The party has started!';
+    document.getElementById('p16-btn').style.display = 'inline-block';
+    blastConfetti();
+  }
+
+  /* --- PAGE 16: REUSABLE INFINITE CONFETTI BLAST --- */
+  const confettiColors = ['#ff6b81', '#ff4757', '#ffd700', '#00f2fe', '#4facfe', '#ffffff'];
+
+  function blastConfetti() {
+    for (let i = 0; i < 40; i++) {
+      const piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+      piece.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+      document.body.appendChild(piece);
+
+      setTimeout(() => piece.remove(), 3500);
     }
   }
 
