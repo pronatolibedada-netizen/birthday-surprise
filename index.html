@@ -67,7 +67,7 @@
 
     .page { display: none; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; animation: fadeIn 0.35s ease-in-out; }
     .page.active { display: flex; }
-    @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
     
     h1 { 
       font-size: 1.7rem; 
@@ -114,6 +114,24 @@
     .timer-unit { display: flex; flex-direction: column; align-items: center; }
     .timer-num { font-size: 1.2rem; font-weight: bold; color: #ff6b81; }
     .timer-lbl { font-size: 0.7rem; color: #e0a3ad; text-transform: uppercase; }
+
+    /* Level Badge Accent Box */
+    .level-badge {
+      background: rgba(255, 107, 129, 0.12);
+      border: 1px solid rgba(255, 107, 129, 0.3);
+      border-radius: 16px;
+      padding: 16px;
+      margin: 12px 0;
+      width: 100%;
+    }
+    .level-badge-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ff6b81;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
 
     /* Cake Mini-Game Styling */
     .cake-game {
@@ -272,61 +290,73 @@
 
     <p>Since we talk strictly through screens and pure chaotic energy, I built this code completely from scratch just for you.</p>
     <button class="btn" onclick="nextPage(); startMusicOnce();">Enter If You Dare 🚪</button>
-    <span class="page-num">1 / 13</span>
+    <span class="page-num">1 / 14</span>
   </div>
 
-  <!-- PAGE 2: THE NICKNAME ORIGIN -->
+  <!-- PAGE 2: LEVEL 15 UNLOCKED -->
   <div class="page" id="p2">
+    <h1>LEVEL 15 UNLOCKED 🎮✨</h1>
+    <div class="level-badge">
+      <div class="level-badge-title">[ New Tier Reached ]</div>
+      <p style="margin-bottom: 0;"><em>System Notification: Hlii has officially completed Level 14.</em></p>
+    </div>
+    <p>Welcome to <strong>Level 15</strong>! A whole new tier of life, new legendary quests, better stats, and even more chaotic energy. May this year bring top-tier loot, zero lag, and endless wins!</p>
+    <button class="btn" onclick="nextPage()">Claim Level 15 →</button>
+    <span class="page-num">2 / 14</span>
+  </div>
+
+  <!-- PAGE 3: THE NICKNAME ORIGIN -->
+  <div class="page" id="p3">
     <h1>Remember The Day? 🥺</h1>
     <p>Do you remember the day I first called you <strong>"Cutie Pie"</strong>?</p>
     <p>You tried to act unbothered, but we both know that nickname was locked in forever!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">2 / 13</span>
+    <span class="page-num">3 / 14</span>
   </div>
 
-  <!-- PAGE 3: HORROR QUIZ -->
-  <div class="page" id="p3">
+  <!-- PAGE 4: HORROR QUIZ -->
+  <div class="page" id="p4">
     <h1>Spooky Quiz 🧠</h1>
     <p>If we were watching a horror movie together online late at night, what would Hlii do?</p>
     <div class="quiz-options">
-      <button class="quiz-btn" onclick="answer(3, false)">Close the chat and hide</button>
-      <button class="quiz-btn" onclick="answer(3, true)">Befriend the monster because you love horror</button>
-      <button class="quiz-btn" onclick="answer(3, false)">Blame me for picking a trash film</button>
+      <button class="quiz-btn" onclick="answer(4, false)">Close the chat and hide</button>
+      <button class="quiz-btn" onclick="answer(4, true)">Befriend the monster because you love horror</button>
+      <button class="quiz-btn" onclick="answer(4, false)">Blame me for picking a trash film</button>
     </div>
-    <div class="feedback" id="fb3"></div>
-    <span class="page-num">3 / 13</span>
+    <div class="feedback" id="fb4"></div>
+    <span class="page-num">4 / 14</span>
   </div>
 
-  <!-- PAGE 4: INTERACTIVE CAKE GAME -->
-  <div class="page" id="p4">
+  <!-- PAGE 5: INTERACTIVE CAKE GAME -->
+  <div class="page" id="p5">
     <h1>Eat Your Birthday Cake! 🎂</h1>
     <p id="cake-instruction">Tap the cake to take bites!</p>
     <div class="cake-game" id="cake" onclick="eatCake()">🎂</div>
     <div class="feedback" id="cake-status">Bites left: 4</div>
     <button class="btn" id="cake-btn" onclick="nextPage()" disabled>Finish Eating First 🍰</button>
-    <span class="page-num">4 / 13</span>
+    <span class="page-num">5 / 14</span>
   </div>
 
-  <!-- PAGE 5: CHAOS ROAST -->
-  <div class="page" id="p5">
+  <!-- PAGE 6: CHAOS ROAST -->
+  <div class="page" id="p6">
     <h1>Partners In Digital Crime 😈</h1>
     <p>Honestly, our main bad habit is how <strong>completely chaotic and unhinged</strong> our text messages get.</p>
     <p>It's a miracle our chat history hasn't broken the server yet!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">5 / 13</span>
+    <span class="page-num">6 / 14</span>
   </div>
 
-  <!-- PAGE 6: SECRET SONG DETAIL -->
-  <div class="page" id="p6">
+  <!-- PAGE 7: SECRET SONG DETAIL -->
+  <div class="page" id="p7">
     <h1>Did You Notice The Song? 🎧</h1>
     <p>Did you notice the background song playing right now?</p>
     <p>It's made up of our absolute favorite tracks (featuring Billie Eilish like <i>Ocean Eyes</i> & <i>lovely</i>) because no standard background music would fit our vibe!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">6 / 13</span>
+    <span class="page-num">7 / 14</span>
   </div>
 
-  <!-- PAGE 7: REAL CHAT MEMORIES -->
-  <div class="page" id="p7">
+  <!-- PAGE 8: REAL CHAT MEMORIES -->
+  <div class="page" id="p8">
     <h1>Chat Receipts 💬</h1>
     <div class="chat-box">
       <div class="msg msg-them">No I love talking to you 😭</div>
@@ -337,32 +367,32 @@
     </div>
     <p>Looking back at our real chats always reminds me how unbeatable our vibe is!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">7 / 13</span>
+    <span class="page-num">8 / 14</span>
   </div>
 
-  <!-- PAGE 8: HORROR & LOVE -->
-  <div class="page" id="p8">
+  <!-- PAGE 9: HORROR & LOVE -->
+  <div class="page" id="p9">
     <h1>A Quick Fact 🖤</h1>
     <p>You might love dark horror movies, creepy stories, and scary themes...</p>
     <p>...but you're still the sweetest person in my chat notifications (even when you're being completely unhinged!).</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">8 / 13</span>
+    <span class="page-num">9 / 14</span>
   </div>
 
-  <!-- PAGE 9: FINAL QUIZ -->
-  <div class="page" id="p9">
+  <!-- PAGE 10: FINAL QUIZ -->
+  <div class="page" id="p10">
     <h1>Final Question ❓</h1>
     <p>Are you ready for your official August 18th birthday wish?</p>
     <div class="quiz-options">
-      <button class="quiz-btn" onclick="answer(9, true)">Yes, hit me with it!</button>
-      <button class="quiz-btn" onclick="answer(9, true)">Born ready! 🎃</button>
+      <button class="quiz-btn" onclick="answer(10, true)">Yes, hit me with it!</button>
+      <button class="quiz-btn" onclick="answer(10, true)">Born ready! 🎃</button>
     </div>
-    <div class="feedback" id="fb9"></div>
-    <span class="page-num">9 / 13</span>
+    <div class="feedback" id="fb10"></div>
+    <span class="page-num">10 / 14</span>
   </div>
 
-  <!-- PAGE 10: HEARTFELT WISH -->
-  <div class="page" id="p10">
+  <!-- PAGE 11: HEARTFELT WISH -->
+  <div class="page" id="p11">
     <h1>Happy Birthday, Hlii! ✨</h1>
     <div style="background: rgba(12, 4, 6, 0.6); padding: 14px; border-radius: 14px; margin-bottom: 15px; border: 1px solid rgba(255, 107, 129, 0.15);">
       <p style="margin-bottom: 0;">
@@ -372,19 +402,19 @@
       </p>
     </div>
     <button class="btn" onclick="nextPage()">The Big Finale →</button>
-    <span class="page-num">10 / 13</span>
+    <span class="page-num">11 / 14</span>
   </div>
 
-  <!-- PAGE 11: FINAL REVEAL -->
-  <div class="page" id="p11">
+  <!-- PAGE 12: FINAL REVEAL -->
+  <div class="page" id="p12">
     <h1>Happy Birthday Cutie Pie! 🎈</h1>
     <p>Have the absolute best birthday on August 18th. You deserve the world!</p>
     <button class="btn" onclick="nextPage()">Unlock Birthday Games 🎮</button>
-    <span class="page-num">11 / 13</span>
+    <span class="page-num">12 / 14</span>
   </div>
 
-  <!-- PAGE 12: AFTER-PARTY GAME 1 (GHOST CATCHER) -->
-  <div class="page" id="p12">
+  <!-- PAGE 13: AFTER-PARTY GAME 1 (GHOST CATCHER) -->
+  <div class="page" id="p13">
     <h1>Spooky Ghost Catcher 👻</h1>
     <p>Tap as many ghosts as you can in 10 seconds!</p>
     <div class="game-score-board" id="ghost-score">Score: 0 | Time Left: 10s</div>
@@ -393,11 +423,11 @@
     </div>
     <button class="btn" id="start-ghost-btn" onclick="startGhostGame()">Start Game 🎮</button>
     <button class="btn" onclick="nextPage()">Next Game →</button>
-    <span class="page-num">12 / 13</span>
+    <span class="page-num">13 / 14</span>
   </div>
 
-  <!-- PAGE 13: AFTER-PARTY GAME 2 (CHAOS METER) -->
-  <div class="page" id="p13">
+  <!-- PAGE 14: AFTER-PARTY GAME 2 (CHAOS METER) -->
+  <div class="page" id="p14">
     <h1>Hlii's Chaos Level ⚡</h1>
     <p>Repeatedly tap the button below to max out your chaotic energy meter!</p>
     <div class="meter-bar">
@@ -408,7 +438,7 @@
     <div style="margin-top: 15px;">
       <button class="btn" onclick="goToPage(1)">Replay Whole Cards 🔄</button>
     </div>
-    <span class="page-num">13 / 13</span>
+    <span class="page-num">14 / 14</span>
   </div>
 
 </div>
@@ -423,7 +453,7 @@
   }
 
   function nextPage() {
-    if (currentPage < 13) {
+    if (currentPage < 14) {
       showPage(currentPage + 1);
     }
   }
@@ -603,15 +633,20 @@
 
   function startMusicOnce() {
     if (!isPlaying) {
+      music.volume = 0;
       music.play().then(() => {
         isPlaying = true;
         musicBtn.innerText = '🎵';
-      }).catch(() => {
-        // Fallback for browser autoplay policies
-      });
+        let vol = 0;
+        let fade = setInterval(() => {
+          if (vol < 0.8) { vol += 0.05; music.volume = vol; }
+          else { clearInterval(fade); }
+        }, 100);
+      }).catch(() => {});
     }
   }
 </script>
 
 </body>
 </html>
+
