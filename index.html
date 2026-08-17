@@ -103,17 +103,17 @@
     /* Countdown Timer Display */
     .timer-box {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       width: 100%;
       background: rgba(12, 4, 6, 0.6);
       border: 1px solid rgba(255, 107, 129, 0.15);
       border-radius: 14px;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
     }
     .timer-unit { display: flex; flex-direction: column; align-items: center; }
-    .timer-num { font-size: 1.2rem; font-weight: bold; color: #ff6b81; }
-    .timer-lbl { font-size: 0.7rem; color: #e0a3ad; text-transform: uppercase; }
+    .timer-num { font-size: 2.2rem; font-weight: bold; color: #ff6b81; }
+    .timer-lbl { font-size: 0.75rem; color: #e0a3ad; text-transform: uppercase; letter-spacing: 1px; }
 
     /* Level Badge Accent Box */
     .level-badge {
@@ -275,21 +275,23 @@
 
 <div class="card-container">
 
-  <!-- PAGE 1: TITLE & COUNTDOWN TIMER -->
+  <!-- PAGE 1: TITLE & 5-SECOND COUNTDOWN TIMER -->
   <div class="page active" id="p1">
     <h1>Happy Birthday Hlii! 👻🎉</h1>
     <p>Welcome to your official August 18th birthday site!</p>
 
-    <!-- Countdown Timer -->
+    <!-- 5-Second Countdown Timer -->
     <div class="timer-box">
-      <div class="timer-unit"><span class="timer-num" id="d">00</span><span class="timer-lbl">Days</span></div>
-      <div class="timer-unit"><span class="timer-num" id="h">00</span><span class="timer-lbl">Hours</span></div>
-      <div class="timer-unit"><span class="timer-num" id="m">00</span><span class="timer-lbl">Mins</span></div>
-      <div class="timer-unit"><span class="timer-num" id="s">00</span><span class="timer-lbl">Secs</span></div>
+      <div class="timer-unit">
+        <span class="timer-num" id="s">05</span>
+        <span class="timer-lbl">Unlocking In...</span>
+      </div>
     </div>
 
     <p>Since we talk strictly through screens and pure chaotic energy, I built this code completely from scratch just for you.</p>
-    <button class="btn" onclick="nextPage(); startMusicOnce();">Enter If You Dare 🚪</button>
+    <button class="btn" id="enter-btn" onclick="nextPage(); startMusicOnce();" disabled>
+      🔒 Waiting... (5s)
+    </button>
     <span class="page-num">1 / 14</span>
   </div>
 
@@ -461,27 +463,29 @@
     showPage(num);
   }
 
-  /* Countdown Timer Logic for August 18 */
-  function updateCountdown() {
-    const now = new Date();
-    let bday = new Date(now.getFullYear(), 7, 18);
-    if (now > bday) {
-      bday.setFullYear(now.getFullYear() + 1);
-    }
-    const diff = bday - now;
+  /* 5-Second Unlock Timer Logic */
+  let timeLeft = 5;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
+  function startUnlockTimer() {
+    const secDisplay = document.getElementById('s');
+    const enterBtn = document.getElementById('enter-btn');
 
-    document.getElementById('d').innerText = String(days).padStart(2, '0');
-    document.getElementById('h').innerText = String(hours).padStart(2, '0');
-    document.getElementById('m').innerText = String(mins).padStart(2, '0');
-    document.getElementById('s').innerText = String(secs).padStart(2, '0');
+    const countdownInterval = setInterval(() => {
+      timeLeft--;
+
+      if (timeLeft > 0) {
+        secDisplay.innerText = String(timeLeft).padStart(2, '0');
+        enterBtn.innerText = `🔒 Waiting... (${timeLeft}s)`;
+      } else {
+        clearInterval(countdownInterval);
+        secDisplay.innerText = '00';
+        enterBtn.disabled = false;
+        enterBtn.innerText = 'Enter If You Dare 🚪';
+      }
+    }, 1000);
   }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+
+  window.onload = startUnlockTimer;
 
   /* Quiz Logic */
   function answer(pageNum, isCorrect) {
