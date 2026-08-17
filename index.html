@@ -390,7 +390,7 @@
     <button class="btn" id="enter-btn" onclick="nextPage(); startMusicOnce();" disabled>
       🔒 Waiting... (5s)
     </button>
-    <span class="page-num">1 / 18</span>
+    <span class="page-num">1 / 19</span>
   </div>
 
   <!-- PAGE 2: LEVEL 15 UNLOCKED -->
@@ -402,7 +402,7 @@
     </div>
     <p>Welcome to <strong>Level 15</strong>! A whole new tier of life, new legendary quests, better stats, and even more chaotic energy. May this year bring top-tier loot, zero lag, and endless wins!</p>
     <button class="btn" onclick="nextPage()">Claim Level 15 →</button>
-    <span class="page-num">2 / 18</span>
+    <span class="page-num">2 / 19</span>
   </div>
 
   <!-- PAGE 3: THE NICKNAME ORIGIN -->
@@ -411,7 +411,7 @@
     <p>Do you remember the day I first called you <strong>"Cutie Pie"</strong>?</p>
     <p>You tried to act unbothered, but we both know that nickname was locked in forever!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">3 / 18</span>
+    <span class="page-num">3 / 19</span>
   </div>
 
   <!-- PAGE 4: HORROR QUIZ -->
@@ -424,7 +424,7 @@
       <button class="quiz-btn" onclick="answer(4, false)">Blame me for picking a trash film</button>
     </div>
     <div class="feedback" id="fb4"></div>
-    <span class="page-num">4 / 18</span>
+    <span class="page-num">4 / 19</span>
   </div>
 
   <!-- PAGE 5: INTERACTIVE CAKE GAME -->
@@ -434,7 +434,7 @@
     <div class="cake-game" id="cake" onclick="eatCake()">🎂</div>
     <div class="feedback" id="cake-status">Bites left: 4</div>
     <button class="btn" id="cake-btn" onclick="nextPage()" disabled>Finish Eating First 🍰</button>
-    <span class="page-num">5 / 18</span>
+    <span class="page-num">5 / 19</span>
   </div>
 
   <!-- PAGE 6: CHAOS ROAST -->
@@ -443,7 +443,7 @@
     <p>Honestly, our main bad habit is how <strong>completely chaotic and unhinged</strong> our text messages get.</p>
     <p>It's a miracle our chat history hasn't broken the server yet!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">6 / 18</span>
+    <span class="page-num">6 / 19</span>
   </div>
 
   <!-- PAGE 7: SECRET SONG DETAIL -->
@@ -452,7 +452,7 @@
     <p>Did you notice the background song playing right now?</p>
     <p>It's made up of our absolute favorite tracks (featuring Billie Eilish like <i>Ocean Eyes</i> & <i>lovely</i>) because no standard background music would fit our vibe!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">7 / 18</span>
+    <span class="page-num">7 / 19</span>
   </div>
 
   <!-- PAGE 8: REAL CHAT MEMORIES -->
@@ -467,7 +467,7 @@
     </div>
     <p>Looking back at our real chats always reminds me how unbeatable our vibe is!</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">8 / 18</span>
+    <span class="page-num">8 / 19</span>
   </div>
 
   <!-- PAGE 9: HORROR & LOVE -->
@@ -476,7 +476,7 @@
     <p>You might love dark horror movies, creepy stories, and scary themes...</p>
     <p>...but you're still the sweetest person in my chat notifications (even when you're being completely unhinged!).</p>
     <button class="btn" onclick="nextPage()">Next →</button>
-    <span class="page-num">9 / 18</span>
+    <span class="page-num">9 / 19</span>
   </div>
 
   <!-- PAGE 10: FINAL QUIZ -->
@@ -488,7 +488,7 @@
       <button class="quiz-btn" onclick="answer(10, true)">Born ready! 🎃</button>
     </div>
     <div class="feedback" id="fb10"></div>
-    <span class="page-num">10 / 18</span>
+    <span class="page-num">10 / 19</span>
   </div>
 
   <!-- PAGE 11: UNBOXING MINI-GAME -->
@@ -498,7 +498,7 @@
     <div class="gift-box" id="gift" onclick="unboxGift()">🎁</div>
     <div class="feedback" id="gift-status">Taps left: 5</div>
     <button class="btn" id="gift-btn" onclick="nextPage()" disabled>Unbox Gift First 📦</button>
-    <span class="page-num">11 / 18</span>
+    <span class="page-num">11 / 19</span>
   </div>
 
   <!-- PAGE 12: CHAOS SOUNDBOARD -->
@@ -526,12 +526,28 @@
     </div>
 
     <div class="feedback" id="sound-status" style="color: #ff6b81; margin-top: 4px;">Tap a button!</div>
-    <button class="btn" onclick="nextPage()">Read Birthday Wishes →</button>
-    <span class="page-num">12 / 18</span>
+    <button class="btn" onclick="nextPage()">Next →</button>
+    <span class="page-num">12 / 19</span>
   </div>
 
-  <!-- PAGE 13: UPDATED BIRTHDAY WISH -->
+  <!-- PAGE 13: KEYBOARD VIBE CHECK (NEW!) -->
   <div class="page" id="p13">
+    <h1>The Keyboard Vibe Check ⌨️⚡</h1>
+    <p>Rate this website out of 10 using your actual keyboard right now!</p>
+    
+    <div style="margin: 15px 0;">
+      <input type="number" id="rating-input" placeholder="Type 0 to 10..." style="background: rgba(12, 4, 6, 0.8); border: 1px solid rgba(255, 107, 129, 0.4); color: #fff; padding: 12px 20px; border-radius: 99px; font-size: 1.1rem; width: 200px; text-align: center; outline: none;">
+      <br>
+      <button class="btn" onclick="submitKeyboardRating()" style="margin-top: 10px;">Submit Rating 🚀</button>
+    </div>
+
+    <div class="feedback" id="keyboard-feedback" style="color: #ff6b81; font-size: 0.9rem; min-height: 40px; margin-top: 2px;"></div>
+    <button class="btn" id="rating-next-btn" onclick="nextPage()" style="display: none; margin-top: 8px;">Continue Next →</button>
+    <span class="page-num">13 / 19</span>
+  </div>
+
+  <!-- PAGE 14: BIRTHDAY WISH -->
+  <div class="page" id="p14">
     <h1>Level 15 Is Here! 🔥👻</h1>
     <div style="background: rgba(12, 4, 6, 0.6); padding: 14px; border-radius: 14px; margin-bottom: 15px; border: 1px solid rgba(255, 107, 129, 0.15);">
       <p style="margin-bottom: 0;">
@@ -540,19 +556,19 @@
       </p>
     </div>
     <button class="btn" onclick="nextPage()">The Big Finale →</button>
-    <span class="page-num">13 / 18</span>
+    <span class="page-num">14 / 19</span>
   </div>
 
-  <!-- PAGE 14: FINAL REVEAL -->
-  <div class="page" id="p14">
+  <!-- PAGE 15: FINAL REVEAL -->
+  <div class="page" id="p15">
     <h1>Happy Birthday Cutie Pie! 🎈</h1>
     <p>Have the absolute best birthday on August 18th. You deserve the world!</p>
     <button class="btn" onclick="nextPage()">Unlock Birthday Games 🎮</button>
-    <span class="page-num">14 / 18</span>
+    <span class="page-num">15 / 19</span>
   </div>
 
-  <!-- PAGE 15: AFTER-PARTY GAME 1 (GHOST CATCHER) -->
-  <div class="page" id="p15">
+  <!-- PAGE 16: AFTER-PARTY GAME 1 (GHOST CATCHER) -->
+  <div class="page" id="p16">
     <h1>Spooky Ghost Catcher 👻</h1>
     <p>Tap as many ghosts as you can in 10 seconds!</p>
     <div class="game-score-board" id="ghost-score">Score: 0 | Time Left: 10s</div>
@@ -561,11 +577,11 @@
     </div>
     <button class="btn" id="start-ghost-btn" onclick="startGhostGame()">Start Game 🎮</button>
     <button class="btn" onclick="nextPage()">Next Game →</button>
-    <span class="page-num">15 / 18</span>
+    <span class="page-num">16 / 19</span>
   </div>
 
-  <!-- PAGE 16: AFTER-PARTY GAME 2 (CHAOS METER) -->
-  <div class="page" id="p16">
+  <!-- PAGE 17: AFTER-PARTY GAME 2 (CHAOS METER) -->
+  <div class="page" id="p17">
     <h1>Hlii's Chaos Level ⚡</h1>
     <p>Repeatedly tap the button below to max out your chaotic energy meter!</p>
     <div class="meter-bar">
@@ -576,11 +592,11 @@
     <div style="margin-top: 12px;">
       <button class="btn" onclick="nextPage()">Let's Celebrate! 🍾 →</button>
     </div>
-    <span class="page-num">16 / 18</span>
+    <span class="page-num">17 / 19</span>
   </div>
 
-  <!-- PAGE 17: CHAMPAGNE CELEBRATION -->
-  <div class="page" id="p17">
+  <!-- PAGE 18: CHAMPAGNE CELEBRATION -->
+  <div class="page" id="p18">
     <h1>Let's Celebrate! 🍾</h1>
     <p>The main party is here! Tap the bottle to pop the champagne and start the celebration!</p>
 
@@ -591,14 +607,14 @@
 
     <p id="pop-status" style="font-weight: bold; color: #ff6b81;">Click the bottle to pop it open!</p>
     
-    <button class="btn" id="p18-btn" onclick="nextPage()" style="display: none; margin-top: 15px;">
+    <button class="btn" id="p19-btn" onclick="nextPage()" style="display: none; margin-top: 15px;">
       Enter Unlimited After-Party 🎉
     </button>
-    <span class="page-num">17 / 18</span>
+    <span class="page-num">18 / 19</span>
   </div>
 
-  <!-- PAGE 18: INFINITE CONFETTI BLAST -->
-  <div class="page" id="p18">
+  <!-- PAGE 19: INFINITE CONFETTI BLAST -->
+  <div class="page" id="p19">
     <h1>The Unlimited Party 🎈</h1>
     <p>The birthday never ends! Tap the button below as many times as you want to blast confetti everywhere!</p>
 
@@ -611,7 +627,7 @@
     <div style="margin-top: 10px;">
       <button class="btn" onclick="goToPage(1)">Replay Card Deck 🔄</button>
     </div>
-    <span class="page-num">18 / 18</span>
+    <span class="page-num">19 / 19</span>
   </div>
 
 </div>
@@ -626,7 +642,7 @@
   }
 
   function nextPage() {
-    if (currentPage < 18) {
+    if (currentPage < 19) {
       showPage(currentPage + 1);
     }
   }
@@ -804,6 +820,43 @@
     }
   }
 
+  /* KEYBOARD RATING LOGIC */
+  function submitKeyboardRating() {
+    const inputVal = document.getElementById('rating-input').value.trim();
+    const feedback = document.getElementById('keyboard-feedback');
+    const nextBtn = document.getElementById('rating-next-btn');
+
+    if (inputVal === "") {
+      feedback.style.color = "#ff4757";
+      feedback.innerText = "Hey! You didn't type a number yet! 👀";
+      return;
+    }
+
+    const num = Number(inputVal);
+
+    if (num <= 5) {
+      feedback.style.color = "#ff4757";
+      feedback.innerText = `"${num} out of 10?!" Wow. Disrespectful. Straight to jail! 🚨😂 Try again.`;
+      triggerScreenShake();
+    } 
+    else if (num > 5 && num < 10) {
+      feedback.style.color = "#ffd700";
+      feedback.innerText = `"${num} out of 10?" Not bad, but we like perfection around here! Try higher 😉`;
+    } 
+    else if (num >= 10 && num <= 100) {
+      feedback.style.color = "#ff6b81";
+      feedback.innerText = `"${num}/10?! Let's gooo! Main character energy confirmed! 👑🔥🎉`;
+      blastConfetti();
+      nextBtn.style.display = "inline-block";
+    } 
+    else {
+      feedback.style.color = "#00f2fe";
+      feedback.innerText = `"${num} out of 10?!" Okay mathematician, math class is over, but you passed the vibe check! 🚀💖`;
+      blastConfetti();
+      nextBtn.style.display = "inline-block";
+    }
+  }
+
   /* --- AFTER-PARTY MINI GAME 1: GHOST CATCHER --- */
   let ghostScore = 0;
   let ghostTimeLeft = 10;
@@ -874,19 +927,19 @@
     }
   }
 
-  /* --- PAGE 17: CHAMPAGNE POP LOGIC --- */
+  /* --- PAGE 18: CHAMPAGNE POP LOGIC --- */
   let popped = false;
   function popChampagne() {
     if (popped) return;
     popped = true;
     document.getElementById('cork').classList.add('popped');
     document.getElementById('pop-status').innerText = 'CHEERS! 🥂 The party has started!';
-    document.getElementById('p18-btn').style.display = 'inline-block';
+    document.getElementById('p19-btn').style.display = 'inline-block';
     playSound('champagne');
     blastConfetti();
   }
 
-  /* --- PAGE 18: REUSABLE INFINITE CONFETTI BLAST --- */
+  /* --- PAGE 19: REUSABLE INFINITE CONFETTI BLAST --- */
   const confettiColors = ['#ff6b81', '#ff4757', '#ffd700', '#00f2fe', '#4facfe', '#ffffff'];
 
   function blastConfetti() {
